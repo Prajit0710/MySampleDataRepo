@@ -8,6 +8,9 @@
 		"Selfhostedserver_connectionString": {
 			"value": ""
 		},
+		"dataCSV_connectionString": {
+			"value": ""
+		},
 		"containerUri": {
 			"value": ""
 		},
