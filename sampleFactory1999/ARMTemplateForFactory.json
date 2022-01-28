@@ -7,14 +7,6 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "sampleFactory1999"
 		},
-		"SampleDataInput_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'SampleDataInput'"
-		},
-		"SampleDataOutput_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'SampleDataOutput'"
-		},
 		"Selfhostedserver_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Selfhostedserver'"
@@ -140,33 +132,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Selfhostedserver')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SampleDataInput')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('SampleDataInput_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SampleDataOutput')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Output data movement",
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('SampleDataOutput_connectionString')]"
-				}
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Selfhostedserver')]",

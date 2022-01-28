@@ -7,14 +7,6 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "sampleFactory1999"
 		},
-		"SampleDataInput_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'SampleDataInput'"
-		},
-		"SampleDataOutput_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'SampleDataOutput'"
-		},
 		"Selfhostedserver_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Selfhostedserver'"
@@ -45,12 +37,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"SampleDataInput_connectionString": {
-						"value": "[parameters('SampleDataInput_connectionString')]"
-					},
-					"SampleDataOutput_connectionString": {
-						"value": "[parameters('SampleDataOutput_connectionString')]"
 					},
 					"Selfhostedserver_connectionString": {
 						"value": "[parameters('Selfhostedserver_connectionString')]"

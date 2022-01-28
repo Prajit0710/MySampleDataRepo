@@ -5,12 +5,6 @@
 		"factoryName": {
 			"value": "sampleFactory1999"
 		},
-		"SampleDataInput_connectionString": {
-			"value": ""
-		},
-		"SampleDataOutput_connectionString": {
-			"value": ""
-		},
 		"Selfhostedserver_connectionString": {
 			"value": ""
 		},
