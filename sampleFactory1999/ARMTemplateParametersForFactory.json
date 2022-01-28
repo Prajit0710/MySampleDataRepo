@@ -13,9 +13,6 @@
 		},
 		"Selfhostedserver_connectionString": {
 			"value": ""
-		},
-		"trigger1_properties_typeProperties_scope": {
-			"value": "/subscriptions/186109fb-871b-418a-9a9a-d1e325db4cc5/resourceGroups/PrajitSampleDemo/providers/Microsoft.Storage/storageAccounts/sampledatademo"
 		}
 	}
 }
