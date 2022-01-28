@@ -1,0 +1,9 @@
+{
+	"name": "sampleFactory1999",
+	"location": "southindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4840b8ad-a573-44d1-875e-926f090ee38a",
+		"tenantId": "cf5cd4e9-a8a8-44cd-8fe6-d716f62684ac"
+	}
+}
