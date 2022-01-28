@@ -11,6 +11,9 @@
 		"dataCSV_connectionString": {
 			"value": ""
 		},
+		"newdata_connectionString": {
+			"value": ""
+		},
 		"containerUri": {
 			"value": ""
 		},
