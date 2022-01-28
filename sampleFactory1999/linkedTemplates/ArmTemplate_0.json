@@ -21,16 +21,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/IR-selfhosted')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/dataCSV')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -44,36 +34,55 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Selfhostedserver')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/IR-selfhosted')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"parameters": {
-					"serverName": {
-						"type": "string"
-					},
-					"dbName": {
-						"type": "string"
-					},
-					"linkedusername": {
-						"type": "string"
-					},
-					"linkedpassword": {
-						"type": "string"
-					}
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/deptdataCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dataCSV",
+					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "SqlServer",
+				"type": "DelimitedText",
 				"typeProperties": {
-					"connectionString": "[parameters('Selfhostedserver_connectionString')]"
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "department.csv",
+						"folderPath": "input",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
 				},
-				"connectVia": {
-					"referenceName": "IR-selfhosted",
-					"type": "IntegrationRuntimeReference"
-				}
+				"schema": [
+					{
+						"name": "department_id",
+						"type": "String"
+					},
+					{
+						"name": "department_name",
+						"type": "String"
+					},
+					{
+						"name": "location_id",
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/IR-selfhosted')]"
+				"[concat(variables('factoryId'), '/linkedServices/dataCSV')]"
 			]
 		},
 		{
@@ -147,7 +156,40 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/deptdataCSV')]",
+			"name": "[concat(parameters('factoryName'), '/Selfhostedserver')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"serverName": {
+						"type": "string"
+					},
+					"dbName": {
+						"type": "string"
+					},
+					"linkedusername": {
+						"type": "string"
+					},
+					"linkedpassword": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('Selfhostedserver_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "IR-selfhosted",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/IR-selfhosted')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/outputdataCSV')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -160,29 +202,14 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "department.csv",
-						"folderPath": "input",
+						"folderPath": "output",
 						"container": "data"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
-					"firstRowAsHeader": true,
 					"quoteChar": "\""
 				},
-				"schema": [
-					{
-						"name": "department_id",
-						"type": "String"
-					},
-					{
-						"name": "department_name",
-						"type": "String"
-					},
-					{
-						"name": "location_id",
-						"type": "String"
-					}
-				]
+				"schema": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/dataCSV')]"
